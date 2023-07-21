@@ -1,0 +1,16 @@
+.noteBox .note {
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.noteBox .note:hover {
+    background-color: rgb(220, 0, 0) !important;   
+}
+
+.showBtn {
+    transition: 0.3s;
+}
+
+.showBtn:hover {
+    transform: scale(1.02);
+}

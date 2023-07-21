@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modal Box Test</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="../PricingCard/node_modules/bootstrap/dist/css/bootstrap.min.css">
+</head>
+<body>
+
+    <main>
+        <div class="container d-flex flex-wrap my-5 gap-3">
+            <div class="noteBox d-flex flex-wrap gap-3 d-none text-center"></div>
+            <button class="btn btn-dark showBtn align-self-start">Add Note</button>
+        </div>
+        <div class="w-50 position-absolute" style="top: 25%; left: 25%;">
+            <div class="cardBox d-flex flex-column gap-4 bg-primary text-white rounded-3 text-center d-none p-3">
+                <input type="text" placeholder="Text Something ..." class="form-control p-3">
+                <button class="btn btn-light w-100 px-5 addBtn d-block mx-auto">Add</button>
+                <button class="btn btn-light w-100 px-5 closeBtn">Close</button>
+            </div>
+        </div>
+    </main>
+
+    <script src="./app.js"></script>
+    <script src="../PricingCard/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    
+</body>
+</html>
