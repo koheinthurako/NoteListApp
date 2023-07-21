@@ -6,32 +6,6 @@ const text = document.querySelector(".text");
 const addBtn = document.querySelector(".addBtn");
 const noteBox = document.querySelector(".noteBox");
 
-// showBtn.addEventListener('click', showCard);
-
-// function showCard() {
-//     createCard();
-// };
-
-// function createCard() {
-//     let title = document.createElement("h1");
-//     let closeBtn = document.createElement("button");
-
-//     title.classList.add("p-5")
-//     title.innerText = "Hello World";
-
-//     closeBtn.classList.add("btn", "btn-light", "mb-3");
-//     closeBtn.innerText = "Close";
-
-//     // title.classList.add("")
-
-//     cardBox.append(title, closeBtn);
-//     closeBtn.addEventListener('click', closeCardBox);
-// }
-
-// function closeCardBox() {
-//    this.parentElement.remove();
-// };
-
 function showCard() {
     cardBox.classList.remove("d-none");
     cardBox.classList.add("d-block");
