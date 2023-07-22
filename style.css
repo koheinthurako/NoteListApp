@@ -1,7 +1,3 @@
-@import "../PricingCard/node_modules/bootstrap/dist/css/bootstrap.min.css";
-@import "../PricingCard/node_modules/bootstrap-icons/font/bootstrap-icons.css";
-
-/*# sourceMappingURL=style.css.map */
 .noteBox .note {
     cursor: pointer;
     transition: 0.3s;
