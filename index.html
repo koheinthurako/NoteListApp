@@ -10,18 +10,45 @@
 </head>
 <body>
 
-    <main>
-        <div class="container d-flex flex-wrap my-5 gap-3">
-            <div class="noteBox d-flex flex-wrap gap-3 d-none text-center"></div>
-            <button class="btn btn-dark showBtn align-self-start">Add Note</button>
-        </div>
-        <div class="w-50 position-absolute" style="top: 25%; left: 25%;">
-            <div class="cardBox d-flex flex-column gap-4 bg-primary text-white rounded-3 text-center d-none p-3">
-                <input type="text" placeholder="Text Something ..." class="form-control p-3">
-                <button class="btn btn-light w-100 px-5 addBtn d-block mx-auto">Add</button>
-                <button class="btn btn-light w-100 px-5 closeBtn">Close</button>
+    <main class="container">
+        
+        <div class="d-flex flex-wrap m-3 m-lg-5 gap-4 cardBox">
+            <div class="card addCart text-center border-0 rounded-4" style="height: 200px;">
+                <div class="card-body d-flex justify-content-center align-items-center">
+                    <i class="bi bi-plus-circle-fill showBtn"></i>
+                </div>
             </div>
         </div>
+
+        <div class="modal fade p-4 p-lg-0" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h1 class="modal-title fs-5 fw-bold" id="exampleModalLabel">Are you sure to delete this note?</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>ဖျက်ပြီးရင်ပြန်မရဘူးနော် ပြန်လိုချင်တယ်ဆိုရင်စိတ်ဆိုးမှာ !</p>
+                </div>
+                <div class="modal-footer">
+                    <div class="d-flex gap-3 w-100">
+                        <button type="button" class="btn w-100 btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn w-100 btn-danger confirmDelBtn" data-bs-dismiss="modal">Delete</button>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <div class="formCard text-center border-0 rounded-4 d-none">
+            <div class="card-body">
+                <input type="text" placeholder="Title" class="form-control mb-4 title">
+                <textarea rows="3" class="form-control mb-4 text" placeholder="Write something..."></textarea>
+                <button class="btn btn-primary w-100 addBtn mb-2">Add</button>
+                <button class="btn btn-dark w-100 closeBtn">Close</button>
+            </div>
+        </div>
+        
     </main>
 
     <script src="./app.js"></script>
