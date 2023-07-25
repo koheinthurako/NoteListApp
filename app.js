@@ -7,17 +7,20 @@ const title = document.querySelector(".title");
 const text = document.querySelector(".text");
 const cardBox = document.querySelector(".container .cardBox");
 const confirmDelBtn = document.querySelector(".confirmDelBtn");
+const container = document.querySelector(".container");
 
 let target;
 
 function showCard() {
     formCard.classList.remove("d-none");
     formCard.classList.add("d-block");
+    container.classList.add("blur");
 }
 
 function hideCard() {
     formCard.classList.remove("d-block");
     formCard.classList.add("d-none");
+    container.classList.remove("blur");
 }
 
 function showNote() {
