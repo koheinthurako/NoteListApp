@@ -96,6 +96,8 @@ function createForm() {
             }
         }
     });
+
+    title.focus();
 };
 
 function createCard(title, text) {
