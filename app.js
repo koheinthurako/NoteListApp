@@ -1,7 +1,8 @@
 const showBtn = document.querySelector(".showBtn");
 const formCard = document.querySelector(".formCard");
-const addBtn = document.querySelector(".addBtn");
-const closeBtn = document.querySelector(".closeBtn");
+const formBox = document.querySelector(".formBox");
+// const addBtn = document.querySelector(".addBtn");
+// const closeBtn = document.querySelector(".closeBtn");
 const card = document.querySelector(".card");
 const title = document.querySelector(".title");
 const text = document.querySelector(".text");
@@ -37,7 +38,67 @@ function handleDelete() {
     target.remove();
 }
 
-function createCard() {
+function createForm() {
+    let formCard = document.createElement("div");
+    let div = document.createElement("div");
+
+    formCard.classList.add("formCard", "bg-dark", "text-center", "border-0", "rounded-4");
+
+    formCard.innerHTML = `
+        <div class="card-body">
+            <input type="text" placeholder="Title" class="form-control mb-4 title" autofocus>
+            <textarea rows="3" class="form-control mb-4 text" placeholder="Write something..."></textarea>
+            <button class="btn btn-primary w-100 addBtn mb-2">Add</button>
+            <button class="btn btn-light w-100 closeBtn">Close</button>
+        </div>
+    `;
+
+    formBox.append(formCard);
+
+    let addBtn = document.querySelector(".addBtn");
+    let closeBtn = document.querySelector(".closeBtn");
+    let title = document.querySelector(".title");
+    let text = document.querySelector(".text");
+
+    addBtn.addEventListener('click', _ => {
+        if(title.value || text.value) {
+            createCard(title.value, text.value);
+            let deleteForm = addBtn.parentNode.parentElement;
+            deleteForm.remove();
+        }
+    });
+    
+    closeBtn.addEventListener('click', _ => {
+        let deleteForm = addBtn.parentNode.parentElement;
+        deleteForm.remove();
+    });
+
+    title.addEventListener('keyup', e => {
+        if(e.key == "Enter") {
+            if(title.value) {
+                createCard(title.value, text.value);
+                title.value = null;
+                text.value = null;
+                let deleteForm = addBtn.parentNode.parentElement;
+                deleteForm.remove();
+            }
+        }
+    });
+    
+    text.addEventListener('keyup', e => {
+        if(e.key == "Enter") {
+            if(title.value) {
+                createCard(title.value, text.value);
+                title.value = null;
+                text.value = null;
+                let deleteForm = addBtn.parentNode.parentElement;
+                deleteForm.remove();
+            }
+        }
+    });
+};
+
+function createCard(title, text) {
     let div = document.createElement("div");
     div.classList.add("card", "inputCard", "text-start", "p-2", "border-0", "rounded-4", "overflow-auto", "m-lg-0");
     div.style.height = "200px";
@@ -45,8 +106,8 @@ function createCard() {
 
     div.innerHTML = `
         <div class="card-body d-flex flex-column overflow-auto mb-3">
-            <h4 class="card-title mb-2 fw-bold">${title.value}</h4>
-            <p class="card-text small text-muted">${text.value}</p>
+            <h4 class="card-title mb-2 fw-bold">${title}</h4>
+            <p class="card-text small text-muted">${text}</p>
         </div>
         <div class="card-footer bg-white">
             <button class="btn btn-sm btn-danger w-100 mt-1 delBtn" data-bs-toggle="modal" data-bs-target="#exampleModal">Delete</button>
@@ -67,41 +128,5 @@ function createCard() {
 }
 
 showBtn.addEventListener('click', _ => {
-   showCard(); 
-});
-
-addBtn.addEventListener('click', _ => {
-    if(title.value || text.value) {
-        createCard();
-        hideCard();
-        title.value = null;
-        text.value = null;
-    }
-});
-
-closeBtn.addEventListener('click', _ => {
-    hideCard();
-    title.value = null;
-})
-
-title.addEventListener('keyup', e => {
-    if(e.key == "Enter") {
-        if(title.value) {
-            createCard();
-            hideCard();
-            title.value = null;
-            text.value = null;
-        }
-    }
-});
-
-text.addEventListener('keyup', e => {
-    if(e.key == "Enter") {
-        if(title.value) {
-            createCard();
-            hideCard();
-            title.value = null;
-            text.value = null;
-        }
-    }
+    createForm();
 });
