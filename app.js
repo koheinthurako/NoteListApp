@@ -10,13 +10,8 @@ const container = document.querySelector(".container");
 
 let target;
 
-function handleDelete() {
-    target.remove();
-}
-
 function createForm() {
     let formCard = document.createElement("div");
-    let div = document.createElement("div");
 
     formCard.classList.add("formCard", "bg-dark", "text-center", "border-0", "rounded-4");
 
@@ -79,6 +74,11 @@ function createForm() {
     title.focus();
 };
 
+function handleDelete() {
+    target.remove();
+    saveNotesToLocalStorage();
+}
+
 function createCard(title, text) {
     let div = document.createElement("div");
     div.classList.add("card", "inputCard", "text-start", "p-2", "border-0", "rounded-4", "overflow-auto", "m-lg-0");
@@ -106,7 +106,40 @@ function createCard(title, text) {
         
     });
 
+    saveNotesToLocalStorage();
+
 }
+
+function saveNotesToLocalStorage() {
+    const notes = [];
+    const inputCards = document.querySelectorAll(".inputCard");
+
+    inputCards.forEach(card => {
+        const titleElement = card.querySelector(".card-title");
+        const textElement = card.querySelector(".card-text");
+        const note = {
+            title: titleElement.innerText,
+            text: textElement.innerText,
+        };
+        notes.push(note);
+    });
+
+    // Save the notes array as a JSON string in localStorage
+    localStorage.setItem("notes", JSON.stringify(notes));
+}
+
+function loadNotesFromLocalStorage() {
+    const savedNotes = localStorage.getItem("notes");
+    if (savedNotes) {
+        const notes = JSON.parse(savedNotes);
+        notes.forEach(note => {
+            createCard(note.title, note.text);
+        });
+    }
+}
+
+// Load saved notes from localStorage when the page loads
+loadNotesFromLocalStorage();
 
 showBtn.addEventListener('click', _ => {
     createForm();
