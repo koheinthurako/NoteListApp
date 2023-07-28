@@ -1,8 +1,6 @@
 const showBtn = document.querySelector(".showBtn");
 const formCard = document.querySelector(".formCard");
 const formBox = document.querySelector(".formBox");
-// const addBtn = document.querySelector(".addBtn");
-// const closeBtn = document.querySelector(".closeBtn");
 const card = document.querySelector(".card");
 const title = document.querySelector(".title");
 const text = document.querySelector(".text");
@@ -11,28 +9,6 @@ const confirmDelBtn = document.querySelector(".confirmDelBtn");
 const container = document.querySelector(".container");
 
 let target;
-
-function showCard() {
-    formCard.classList.remove("d-none");
-    formCard.classList.add("d-block");
-    container.classList.add("blur");
-}
-
-function hideCard() {
-    formCard.classList.remove("d-block");
-    formCard.classList.add("d-none");
-    container.classList.remove("blur");
-}
-
-function showNote() {
-    card.classList.add("d-block");
-    card.classList.remove("d-none")
-}
-
-function hideNote() {
-    card.classList.add("d-none");
-    card.classList.remove("d-block")
-}
 
 function handleDelete() {
     target.remove();
@@ -53,6 +29,7 @@ function createForm() {
         </div>
     `;
 
+    container.classList.add("blur");
     formBox.append(formCard);
 
     let addBtn = document.querySelector(".addBtn");
@@ -60,17 +37,21 @@ function createForm() {
     let title = document.querySelector(".title");
     let text = document.querySelector(".text");
 
+    function deleteForm() {
+        let deleteForm = addBtn.parentNode.parentElement;
+        deleteForm.remove();
+        container.classList.remove("blur");
+    };
+
     addBtn.addEventListener('click', _ => {
         if(title.value || text.value) {
             createCard(title.value, text.value);
-            let deleteForm = addBtn.parentNode.parentElement;
-            deleteForm.remove();
+            deleteForm();
         }
     });
     
     closeBtn.addEventListener('click', _ => {
-        let deleteForm = addBtn.parentNode.parentElement;
-        deleteForm.remove();
+        deleteForm();
     });
 
     title.addEventListener('keyup', e => {
@@ -79,8 +60,7 @@ function createForm() {
                 createCard(title.value, text.value);
                 title.value = null;
                 text.value = null;
-                let deleteForm = addBtn.parentNode.parentElement;
-                deleteForm.remove();
+                deleteForm();
             }
         }
     });
@@ -91,8 +71,7 @@ function createForm() {
                 createCard(title.value, text.value);
                 title.value = null;
                 text.value = null;
-                let deleteForm = addBtn.parentNode.parentElement;
-                deleteForm.remove();
+                deleteForm();
             }
         }
     });
