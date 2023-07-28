@@ -13,11 +13,11 @@ let target;
 function createForm() {
     let formCard = document.createElement("div");
 
-    formCard.classList.add("formCard", "bg-dark", "text-center", "border-0", "rounded-4");
+    formCard.classList.add("formCard", "bg-dark", "text-center", "border-0", "rounded-4", "animateIn");
 
     formCard.innerHTML = `
         <div class="card-body">
-            <input type="text" placeholder="Title" class="form-control mb-4 title" autofocus>
+            <input type="text" placeholder="Title" class="form-control mb-4 title">
             <textarea rows="3" class="form-control mb-4 text" placeholder="Write something..."></textarea>
             <button class="btn btn-primary w-100 addBtn mb-2">Add</button>
             <button class="btn btn-light w-100 closeBtn">Close</button>
@@ -25,6 +25,8 @@ function createForm() {
     `;
 
     container.classList.add("blur");
+    // formCard.classList.add("animateIn");
+    
     formBox.append(formCard);
 
     let addBtn = document.querySelector(".addBtn");
@@ -34,8 +36,12 @@ function createForm() {
 
     function deleteForm() {
         let deleteForm = addBtn.parentNode.parentElement;
-        deleteForm.remove();
-        container.classList.remove("blur");
+        formCard.classList.remove("animateIn");
+        formCard.classList.add("animateOut");
+        setTimeout(() => {
+            deleteForm.remove();
+            container.classList.remove("blur");
+        }, 200);
     };
 
     addBtn.addEventListener('click', _ => {
@@ -95,7 +101,7 @@ function createCard(title, text) {
         </div>
         `;
 
-    cardBox.append(div);
+        cardBox.append(div);
 
     let delBtn = document.querySelectorAll(".delBtn");
     delBtn.forEach(btn => {

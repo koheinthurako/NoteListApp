@@ -44,14 +44,43 @@ body {
     transform: scale(1.02);
 }
 
-.formCard {
-    width: 340px;
-    background-color: #fff;
-    padding: 30px;
+.formBox {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -48%);
+}
+
+.formCard {
+    width: 340px;
+    background-color: #fff;
+    padding: 30px;
+}
+
+.formCard.animateIn {
+    animation: show_animate 0.1s ease-in forwards;
+}
+
+.formCard.animateOut {
+    animation: hide_animate 0.1s ease-out forwards;
+}
+
+@keyframes show_animate {
+    0% {
+        transform: scale(0);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes hide_animate {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(0);
+    }
 }
 
 @media screen and (max-width: 576px) {
@@ -67,10 +96,10 @@ body {
     .formCard {
         width: 300px;
         padding: 20px;
-        position: absolute;
+        /* position: absolute;
         top: 50%;
         left: 50%;
-        transform: translate(-50%, -48%);
+        transform: translate(-50%, -48%); */
     }
 
     .cardBox .addCart {
