@@ -41,7 +41,7 @@ function createForm() {
         setTimeout(() => {
             deleteForm.remove();
             container.classList.remove("blur");
-        }, 200);
+        }, 100);
     };
 
     addBtn.addEventListener('click', _ => {
