@@ -101,7 +101,7 @@ function createCard(title, text) {
         </div>
         `;
 
-        cardBox.append(div);
+        cardBox.prepend(div);
 
     let delBtn = document.querySelectorAll(".delBtn");
     delBtn.forEach(btn => {
@@ -138,7 +138,7 @@ function loadNotesFromLocalStorage() {
     const savedNotes = localStorage.getItem("notes");
     if (savedNotes) {
         const notes = JSON.parse(savedNotes);
-        notes.forEach(note => {
+        notes.reverse().forEach(note => {
             createCard(note.title, note.text);
         });
     }
