@@ -85,78 +85,6 @@ function handleDelete() {
     saveNotesToLocalStorage();
 }
 
-function editForm(note) {
-    let formCard = document.createElement("div");
-    let currentNote = note.closest(".card");
-
-    console.log(currentNote);
-    formCard.classList.add("formCard", "bg-dark", "text-center", "border-0", "rounded-4", "animateIn");
-
-    formCard.innerHTML = `
-        <div class="card-body">
-            <input type="text" placeholder="Title" class="form-control mb-4 title" value="A">
-            <textarea rows="3" class="form-control mb-4 text" placeholder="Write something..."></textarea>
-            <button class="btn btn-primary w-100 addBtn mb-2">Save</button>
-            <button class="btn btn-light w-100 closeBtn">Close</button>
-        </div>
-    `;
-
-    container.classList.add("blur");
-    
-    formBox.append(formCard);
-
-    let addBtn = document.querySelector(".addBtn");
-    let closeBtn = document.querySelector(".closeBtn");
-    let title = document.querySelector(".title");
-    let text = document.querySelector(".text");
-
-    function deleteForm() {
-        let deleteForm = addBtn.parentNode.parentElement;
-        formCard.classList.remove("animateIn");
-        formCard.classList.add("animateOut");
-        setTimeout(() => {
-            deleteForm.remove();
-            container.classList.remove("blur");
-        }, 100);
-    };
-
-    addBtn.addEventListener('click', _ => {
-        if(title.value || text.value) {
-            createCard(title.value, text.value);
-            deleteForm();
-        }
-    });
-    
-    closeBtn.addEventListener('click', _ => {
-        deleteForm();
-    });
-
-    title.addEventListener('keyup', e => {
-        if(e.key == "Enter") {
-            if(title.value) {
-                createCard(title.value, text.value);
-                title.value = null;
-                text.value = null;
-                deleteForm();
-            }
-        }
-    });
-    
-    text.addEventListener('keyup', e => {
-        if(e.key == "Enter") {
-            if(title.value) {
-                createCard(title.value, text.value);
-                title.value = null;
-                text.value = null;
-                deleteForm();
-            }
-        }
-    });
-
-    title.focus();
-};
-
-
 function createCard(title, text) {
     let div = document.createElement("div");
     div.classList.add("card", "inputCard", "text-start", "p-2", "border-0", "rounded-4", "overflow-auto", "m-lg-0");
@@ -168,29 +96,20 @@ function createCard(title, text) {
             <h4 class="card-title mb-2 fw-bold">${title}</h4>
             <p class="card-text small text-muted">${text}</p>
         </div>
-        <div class="card-footer bg-white d-flex gap-2 justify-content-center">
-            <button class="btn btn-sm btn-dark mt-1 w-100 editBtn">Edit</button>
-            <button class="btn btn-sm btn-danger mt-1 w-100 delBtn" data-bs-toggle="modal" data-bs-target="#exampleModal">Delete</button>
+        <div class="card-footer bg-white">
+            <button class="btn btn-sm btn-danger w-100 mt-1 delBtn" data-bs-toggle="modal" data-bs-target="#exampleModal">Delete</button>
         </div>
         `;
 
         cardBox.prepend(div);
 
     let delBtn = document.querySelectorAll(".delBtn");
-    let editBtn = document.querySelectorAll(".editBtn");
-
     delBtn.forEach(btn => {
         btn.addEventListener('click', e => {
             target = e.target.parentElement.parentElement;
             confirmDelBtn.addEventListener('click', handleDelete);
         })
         
-    });
-
-    editBtn.forEach(btn => {
-        btn.addEventListener('click', e => {
-            editForm(e.target);
-        });
     });
 
     saveNotesToLocalStorage();
