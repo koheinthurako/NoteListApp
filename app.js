@@ -88,13 +88,16 @@ function handleDelete() {
 function editForm(note) {
     let formCard = document.createElement("div");
     let currentNote = note.closest(".card");
+    let cardTitle = currentNote.querySelector(".card-title");
+
+    console.log(cardTitle.innerText);
 
     console.log(currentNote);
     formCard.classList.add("formCard", "bg-dark", "text-center", "border-0", "rounded-4", "animateIn");
 
     formCard.innerHTML = `
         <div class="card-body">
-            <input type="text" placeholder="Title" class="form-control mb-4 title" value="A">
+            <input type="text" placeholder="Title" class="form-control mb-4 title" value="cardTitle.innerText">
             <textarea rows="3" class="form-control mb-4 text" placeholder="Write something..."></textarea>
             <button class="btn btn-primary w-100 addBtn mb-2">Save</button>
             <button class="btn btn-light w-100 closeBtn">Close</button>
