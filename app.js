@@ -102,6 +102,7 @@ function createCard(title, text) {
         `;
 
         cardBox.prepend(div);
+        cardBox.classList.add("animate__bounceIn");
 
     let delBtn = document.querySelectorAll(".delBtn");
     delBtn.forEach(btn => {
