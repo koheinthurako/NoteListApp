@@ -87,7 +87,7 @@ function handleDelete() {
 
 function createCard(title, text) {
     let div = document.createElement("div");
-    div.classList.add("card", "inputCard", "text-start", "p-2", "border-0", "rounded-4", "overflow-auto", "m-lg-0");
+    div.classList.add("card", "inputCard", "text-start", "p-2", "border-0", "rounded-4", "overflow-auto", "m-lg-0", "animate__animated");
     div.style.height = "200px";
     div.style.width = "300px";
 
@@ -101,8 +101,8 @@ function createCard(title, text) {
         </div>
         `;
 
+        div.classList.add("animate__bounceIn");
         cardBox.prepend(div);
-        cardBox.classList.add("animate__bounceIn");
 
     let delBtn = document.querySelectorAll(".delBtn");
     delBtn.forEach(btn => {
