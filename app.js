@@ -81,8 +81,11 @@ function createForm() {
 };
 
 function handleDelete() {
-    target.remove();
-    saveNotesToLocalStorage();
+    target.classList.replace("animate__bounceIn", "animate__shakeX");
+    setTimeout(() => {
+        target.remove();
+        saveNotesToLocalStorage();
+    }, 500)
 }
 
 function createCard(title, text) {
